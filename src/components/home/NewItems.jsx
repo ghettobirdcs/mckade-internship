@@ -6,8 +6,7 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 
-// expiryDate - Date.now() / 1000 / 60 / 24 = hours left until expiry
-// TODO: stopwatch, pomodoro, clock
+import Timer from "../UI/Timer";
 
 const NewItems = () => {
   const [loading, setLoading] = useState(true);
@@ -83,10 +82,7 @@ const NewItems = () => {
                           <i className="fa fa-check"></i>
                         </Link>
                       </div>
-                      <div className="de_countdown">
-                        {/* TODO: Proper countdown */}
-                        {(item.expiryDate - Date.now()) / 1000 / 60 / 24}
-                      </div>
+                      <Timer expiryDate={item.expiryDate} />
 
                       <div className="nft__item_wrap">
                         {/* <div className="nft__item_extra"> */}
