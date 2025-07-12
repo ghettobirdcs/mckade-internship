@@ -57,7 +57,7 @@ const HotCollections = () => {
           <OwlCarousel
             responsive={responsiveOptions}
             key={loading ? "loading" : collection.length} // forces remount when data arrives -
-            // necessary for react-owl-carousel since it expects the container and it's children to be fully present on the first render
+            // necessary for react-owl-carousel loading state since it expects the container and it's children to be fully present on the first render
             className="owl-theme"
             dots={false}
             margin={10}
@@ -89,8 +89,7 @@ const HotCollections = () => {
                         <i className="fa fa-check"></i>
                       </div>
                       <div className="nft_coll_info">
-                        {/* TODO: Where should this link to? are the other links correct? */}
-                        <Link to="/explore">
+                        <Link to={`/item-details/${obj.nftId}`}>
                           <h4>{obj.title}</h4>
                         </Link>
                         <span>ERC-{obj.code}</span>
