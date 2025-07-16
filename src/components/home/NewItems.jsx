@@ -1,3 +1,5 @@
+// TODO: Reinitialize git repo
+
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -17,8 +19,8 @@ const NewItems = () => {
       items: 1,
     },
 
-    500: {
-      items: 1,
+    600: {
+      items: 2,
     },
 
     800: {
