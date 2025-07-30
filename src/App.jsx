@@ -16,6 +16,7 @@ function App() {
   useEffect(() => {
     AOS.init({
       once: true,
+      // FROM ANIMATIONS!!! DO NOT REMOVE
     });
   }, []);
 
