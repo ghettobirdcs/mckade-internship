@@ -2,23 +2,28 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Timer from "./Timer";
 
-const ItemCard = ({ item }) => {
+const ItemCard = ({
+  item,
+  authorImage = item.authorImage,
+  authorId = item.authorId,
+  hasTimer = true,
+}) => {
   return (
     <div className="item" key={item.id}>
       <div className="nft__item">
         <div className="author_list_pp">
           <Link
-            to={`/author/${item.authorId}`}
+            to={`/author/${authorId}`}
             // data-bs-toggle="tooltip"
             // data-bs-placement="top"
             // TODO: Get author's name here somehow
             // title={`Creator: ${item.authorId}`}
           >
-            <img className="lazy" src={item.authorImage} alt="" />
+            <img className="lazy" src={authorImage} alt="" />
             <i className="fa fa-check"></i>
           </Link>
         </div>
-        <Timer expiryDate={item.expiryDate} />
+        {hasTimer && <Timer expiryDate={item.expiryDate} />}
 
         <div className="nft__item_wrap">
           {/* <div className="nft__item_extra"> */}
