@@ -64,6 +64,8 @@ const HotCollections = () => {
             items={4}
             loop
             nav
+            data-aos="fade-in"
+            data-aos-duration="1000"
           >
             {!loading
               ? collection.map((obj) => (

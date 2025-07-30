@@ -65,6 +65,8 @@ const NewItems = () => {
             items={4}
             loop
             nav
+            data-aos="fade-in"
+            data-aos-duration="1000"
           >
             {!loading
               ? items.map((item) => <ItemCard item={item} />)
