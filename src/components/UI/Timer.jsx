@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from "react";
 
 const Timer = ({ expiryDate }) => {
-  const [now, setNow] = useState(Date.now());
-  const [expired, setExpired] = useState(false);
+  const initialNow = Date.now();
+  const [now, setNow] = useState(initialNow);
+  const [expired, setExpired] = useState(initialNow >= expiryDate);
 
   useEffect(() => {
-    // Updates every 1 sec
-    const id = setInterval(() => setNow(Date.now()), 1000);
+    if (expired) return; // no need to set interval if already expired
 
-    if (now >= expiryDate) {
-      setExpired(true);
-      return;
-    }
+    const intervalId = setInterval(() => {
+      const current = Date.now();
 
-    // Clears on unmount
-    return () => clearInterval(id);
-  }, [expiryDate, now]);
+      if (current >= expiryDate) {
+        setExpired(true);
+        clearInterval(intervalId);
+      } else {
+        setNow(current);
+      }
+    }, 1000);
 
-  if (expired) {
-    return null;
-  }
+    return () => clearInterval(intervalId);
+  }, [expiryDate, expired]);
+
+  if (expired) return null;
 
   const msLeft = expiryDate - now;
-
   const hours = Math.floor(msLeft / (1000 * 60 * 60));
   const minutes = Math.floor((msLeft / (1000 * 60)) % 60);
   const seconds = Math.floor((msLeft / 1000) % 60);
